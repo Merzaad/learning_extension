@@ -22,22 +22,25 @@ const App = (): JSX.Element => {
   return (
     <div
       style={{
+        background: '#413F42',
         width: '200px',
-        padding: '0px',
+        padding: '10px',
       }}
     >
       <div
         style={{
-          background: 'gray',
+          background: '#3C2C3E',
           display: 'flex',
           borderRadius: '10px',
           width: '100%',
           justifyContent: 'center',
-          color: 'white',
-          fontSize: '30px',
+          color: '#BDF2D5',
+          fontSize: '35px',
+          height: '50px',
+
         }}
       >
-        <h6 style={{ textShadow: '0px 0px 3px white' }}>{time}</h6>
+        <h6 style={{ textShadow: '0px 0px 3px #BDF2D5', margin: '10px' }}>{time}</h6>
       </div>
     </div>
   )
