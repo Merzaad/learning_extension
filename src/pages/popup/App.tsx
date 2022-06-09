@@ -1,46 +1,39 @@
 import React from 'react'
+import { getCoin } from '../../api/coin'
+import { useQuery, UseQueryResult } from 'react-query'
 
 const App = (): JSX.Element => {
-  const [time, setTime] = React.useState('')
+  const coinQuery = (symbol: string): UseQueryResult<any, unknown> =>
+    useQuery(`coin-${symbol}`, () => getCoin(symbol))
 
-  // a function that returns time in a format of hh:mm:ss
-  // using Copilot AI
+  const ethTest = coinQuery('ethereum')
 
-  const getTime = (): string => {
-    const date = new Date()
-    const hours = date.getHours()
-    const minutes = date.getMinutes()
-    const seconds = date.getSeconds()
-    return `${hours}:${minutes}:${seconds}`
-  }
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(getTime())
-    }, 1000)
-    return () => clearInterval(interval)
-  })
   return (
     <div
       style={{
-        background: '#413F42',
+        background: '#2B2B2B',
         width: '200px',
         padding: '10px',
       }}
     >
       <div
         style={{
-          background: '#3C2C3E',
+          background: '#4B5D67',
           display: 'flex',
           borderRadius: '10px',
           width: '100%',
           justifyContent: 'center',
-          color: '#BDF2D5',
+          color: '#37E2D5',
           fontSize: '35px',
           height: '50px',
-
         }}
       >
-        <h6 style={{ textShadow: '0px 0px 3px #BDF2D5', margin: '10px' }}>{time}</h6>
+        <h6 style={{ textShadow: '0px 0px 3px #37E2D5', margin: '10px' }}>
+          {`ETH: `}
+          {ethTest.data && ethTest.data.data.market_price_usd}
+          {ethTest.isLoading && 'loading'}
+          {ethTest.error && 'error'}
+        </h6>
       </div>
     </div>
   )
