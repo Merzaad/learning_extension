@@ -8,23 +8,28 @@ interface prop {
 const Card = ({ symbol, id = symbol }: prop): JSX.Element => {
   const query = useQuery(`coin-${symbol}`, () => getCoin(symbol))
   const floor = (num: string): number => Math.floor(Number(num))
-  const [color, setColor] = React.useState('#37E2D5')
-  const [backgroundColor, setBackgroundColor] = React.useState('#1B2430')
+  const lIGTH_COLOR = '#ECE5C7'
+  const lIGTH_BACKGROUND = '#354259'
+  const DARK_COLOR = '#816797'
+  const DARK_BACKGROUND = '#191919'
+
+  const [color, setColor] = React.useState(lIGTH_COLOR)
+  const [backgroundColor, setBackgroundColor] = React.useState(lIGTH_BACKGROUND)
   const hover = (action: string): void => {
     if (action === 'in') {
-      setColor('#ECE5C7')
-      setBackgroundColor('#354259')
+      setColor(DARK_COLOR)
+      setBackgroundColor(DARK_BACKGROUND)
     }
     if (action === 'out') {
-      setColor('#37E2D5')
-      setBackgroundColor('#1B2430')
+      setColor(lIGTH_COLOR)
+      setBackgroundColor(lIGTH_BACKGROUND)
     }
   }
   return (
     <div
       style={{
         background: '#2B2B2B',
-        minWidth: '150px',
+        minWidth: '200px',
         padding: '5px',
       }}
       key={id}
@@ -48,7 +53,7 @@ const Card = ({ symbol, id = symbol }: prop): JSX.Element => {
         <div>
           <a
             href={`https://blockchair.com/${symbol}`}
-            target=""
+            target="_blank"
             rel="noreferrer"
             style={{
               textDecoration: 'none',
