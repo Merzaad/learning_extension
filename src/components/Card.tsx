@@ -7,11 +7,11 @@ interface prop {
 }
 const Card = ({ symbol, id = symbol }: prop): JSX.Element => {
   const query = useQuery(`coin-${symbol}`, () => getCoin(symbol))
-  const floor = (num: string): number => Math.floor(Number(num))
-  const lIGTH_COLOR = '#ECE5C7'
-  const lIGTH_BACKGROUND = '#354259'
-  const DARK_COLOR = '#816797'
-  const DARK_BACKGROUND = '#191919'
+  const lIGTH_COLOR = '#EEEEEE'
+  const lIGTH_BACKGROUND = '#222831'
+  const DARK_COLOR = '#FFD369'
+  const DARK_BACKGROUND = '#393E46'
+  
 
   const [color, setColor] = React.useState(lIGTH_COLOR)
   const [backgroundColor, setBackgroundColor] = React.useState(lIGTH_BACKGROUND)
@@ -27,62 +27,82 @@ const Card = ({ symbol, id = symbol }: prop): JSX.Element => {
   }
   return (
     <div
-      style={{
-        background: '#2B2B2B',
-        minWidth: '200px',
-        padding: '5px',
-      }}
       key={id}
+      style={{
+        width: 300,
+        background: backgroundColor,
+        display: 'flex',
+        borderRadius: 10,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 10,
+        paddingRight: 25,
+        transitionDuration: '0.3s',
+        cursor: 'pointer',
+      }}
+      onMouseEnter={() => hover('in')}
+      onMouseLeave={() => hover('out')}
     >
-      <div
-        style={{
-          background: backgroundColor,
-          display: 'flex',
-          borderRadius: 10,
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          border: `1px solid ${color}`,
-          padding: 10,
-          paddingRight: 25,
-          transitionDuration: '0.3s',
-          cursor: 'pointer',
-        }}
-        onMouseEnter={() => hover('in')}
-        onMouseLeave={() => hover('out')}
-      >
-        <div>
-          <a
-            href={`https://blockchair.com/${symbol}`}
-            target="_blank"
-            rel="noreferrer"
-            style={{
-              textDecoration: 'none',
-              color: color,
-              textShadow: `0px 0px 5px ${color}`,
-              transitionDuration: '0.3s',
-              margin: 10,
-              width: '100%',
-              fontWeight: 200,
-              fontSize: 30,
-            }}
-          >
-            {query.data && floor(query.data.data.market_price_usd)}
-            {query.isLoading && 'loading'}
-            {query.error && 'error'}
-          </a>
-        </div>
+      <div>
         <div
           style={{
-            paddingTop: 6,
+            textDecoration: 'none',
+            color: color,
+            textShadow: `0px 0px 5px ${color}`,
+            transitionDuration: '0.3s',
+            margin: 10,
+            fontWeight: 200,
+            fontSize: 15,
+            display: 'flex',
+            gap: 20,
           }}
         >
-          <img
-            src={`https://loutre.blockchair.io/assets/svg/chains/${symbol}.svg`}
-            alt={symbol}
-            width={40}
-            height={40}
-          />
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 10,
+              width: 130
+            }}
+          >
+            <span style={{ opacity: 0.3 }}>{'Price : '}</span>
+            <span style={{ opacity: 0.3 }}>
+              {'Transactions 24h: '}
+            </span>
+          </div>
+          <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 10,
+            width: 70
+          }}
+          >
+            <span>
+              {query.data?.data.market_price_usd}
+              {query.isLoading && 'loading'}
+              {query.error && 'error'}
+            </span>
+            <span>
+              {query.data?.data.transactions_24h}
+              {query.isLoading && 'loading'}
+              {query.error && 'error'}
+            </span>
+          </div>
         </div>
+      </div>
+      <div
+        style={{
+          paddingTop: 6,
+          width: 60,
+        }}
+      >
+        <img
+          src={`https://loutre.blockchair.io/assets/svg/chains/${symbol}.svg`}
+          alt={symbol}
+          width={40}
+          height={40}
+        />
       </div>
     </div>
   )
