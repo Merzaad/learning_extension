@@ -1,3 +1,8 @@
+# TODO
+
+- Refetch
+- Note
+
 # TypeScript React Chrome Extension Boilerplate
 
 A basic TypeScript React Chrome Extension boilerplate that gets you started quickly. It supports **TypeScript**, **JSX**, and **automatic reloading** during development. Jest, ESLint and Prettier included, all bundled using [Rollup](https://rollupjs.org/guide/en/) and [`rollup-plugin-chrome-extension`](https://extend-chrome.dev/rollup-plugin).
@@ -69,4 +74,3 @@ include here. All the filepaths in your manifest should point to files in `src`.
 [Chrome Extension official documentation](https://developer.chrome.com/docs/webstore/)
 
 [How to Publish your extension step by step video tutorial](https://www.youtube.com/playlist?list=PLYlOQabA4Mm0bPiMKIBMgZK0u2jbYsrC6)
-
