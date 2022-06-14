@@ -47,8 +47,6 @@ const Card = ({ symbol, id = symbol }: prop): JSX.Element => {
         <div
           style={{
             textDecoration: 'none',
-            color: color,
-            textShadow: `0px 0px 5px ${color}`,
             transitionDuration: '0.3s',
             margin: 10,
             fontWeight: 200,
@@ -59,21 +57,29 @@ const Card = ({ symbol, id = symbol }: prop): JSX.Element => {
         >
           <div
             style={{
+              color: "#EEEEEE",
               display: 'flex',
               flexDirection: 'column',
               gap: 10,
               width: 130
             }}
           >
-            <span style={{ opacity: 0.3 }}>{'Price : '}</span>
-            <span style={{ opacity: 0.3 }}>
+            <span style={{ opacity: 0.5 }}>
+              {'Price : '}
+              </span>
+            <span style={{ opacity: 0.5 }}>
               {'Transactions 24h: '}
+            </span>
+            <span style={{ opacity: 0.5 }}>
+              {'Change 24h: '}
             </span>
           </div>
           <div
           style={{
             display: 'flex',
+            color: color,
             flexDirection: 'column',
+            textShadow: `0px 0px 5px ${color}`,
             gap: 10,
             width: 70
           }}
@@ -85,6 +91,12 @@ const Card = ({ symbol, id = symbol }: prop): JSX.Element => {
             </span>
             <span>
               {query.data?.data.transactions_24h}
+              {query.isLoading && 'loading'}
+              {query.error && 'error'}
+            </span>
+            <span
+            >
+              {query.data?.data.market_price_usd_change_24h_percentage}{'%'}
               {query.isLoading && 'loading'}
               {query.error && 'error'}
             </span>
