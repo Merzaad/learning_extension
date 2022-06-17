@@ -70,6 +70,7 @@ const Card = ({ symbol, id = symbol }: prop): JSX.Element => {
             <span style={{ opacity: 0.5 }}>{'Price : '}</span>
             <span style={{ opacity: 0.5 }}>{'Transactions 24h: '}</span>
             <span style={{ opacity: 0.5 }}>{'Change 24h: '}</span>
+            <span style={{ opacity: 0.5 }}>{'Volume 24h: '}</span>
           </div>
           <div
             style={{
@@ -94,6 +95,14 @@ const Card = ({ symbol, id = symbol }: prop): JSX.Element => {
             <span>
               {query.data?.data.market_price_usd_change_24h_percentage}
               {'%'}
+              {query.isLoading && 'loading'}
+              {query.error && 'error'}
+            </span>
+            <span>
+              {Math.floor(
+                (query.data?.data.volume_24h ||
+                  query.data?.data.volume_24h_approximate) / 1000000000,
+              ) + 'B'}
               {query.isLoading && 'loading'}
               {query.error && 'error'}
             </span>
