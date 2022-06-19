@@ -15,6 +15,7 @@ const Card = ({ symbol, id = symbol }: prop): JSX.Element => {
   const [color, setColor] = React.useState(lIGTH_COLOR)
   const [backgroundColor, setBackgroundColor] = React.useState(lIGTH_BACKGROUND)
   const [scale, setScale] = React.useState(1)
+  const [dropdown, setDropdown] = React.useState(false)
   const hover = (action: string): void => {
     if (action === 'in') {
       setColor(DARK_COLOR)
@@ -27,12 +28,15 @@ const Card = ({ symbol, id = symbol }: prop): JSX.Element => {
       setScale(1)
     }
   }
+  const toggleDropdown = (): void => {
+    setDropdown(!dropdown)
+  }
   return (
     <div
       key={id}
       style={{
         transform: `scale(${scale})`,
-        width: 300,
+        width: 400,
         background: backgroundColor,
         display: 'flex',
         borderRadius: 10,
@@ -45,6 +49,7 @@ const Card = ({ symbol, id = symbol }: prop): JSX.Element => {
       }}
       onMouseEnter={() => hover('in')}
       onMouseLeave={() => hover('out')}
+      onClick={toggleDropdown}
     >
       <div>
         <div
@@ -56,6 +61,7 @@ const Card = ({ symbol, id = symbol }: prop): JSX.Element => {
             fontSize: 15,
             display: 'flex',
             gap: 20,
+            zIndex: 1,
           }}
         >
           <div
@@ -107,6 +113,19 @@ const Card = ({ symbol, id = symbol }: prop): JSX.Element => {
               {query.error && 'error'}
             </span>
           </div>
+        </div>
+        <div
+          style={{
+            border: '1px solid #EEEEEE',
+            borderRadius: 10,
+            textAlign: 'center',
+            color: color,
+            transitionDuration: '0.2s',
+            height: dropdown ? 50 : 0,
+            opacity: dropdown ? 1 : 0,
+          }}
+        >
+          Dropdown
         </div>
       </div>
       <div
