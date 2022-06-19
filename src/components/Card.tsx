@@ -1,6 +1,7 @@
 import React from 'react'
 import { getCoin } from '../api/coin'
 import { useQuery } from 'react-query'
+import Chart from './Chart'
 interface prop {
   id?: string
   symbol: string
@@ -51,7 +52,9 @@ const Card = ({ symbol, id = symbol }: prop): JSX.Element => {
       onMouseLeave={() => hover('out')}
       onClick={toggleDropdown}
     >
+      {/* data */}
       <div>
+        {/* numbers */}
         <div
           style={{
             textDecoration: 'none',
@@ -74,9 +77,7 @@ const Card = ({ symbol, id = symbol }: prop): JSX.Element => {
             }}
           >
             <span style={{ opacity: 0.5 }}>{'Price : '}</span>
-            <span style={{ opacity: 0.5 }}>{'Transactions 24h: '}</span>
             <span style={{ opacity: 0.5 }}>{'Change 24h: '}</span>
-            <span style={{ opacity: 0.5 }}>{'Volume 24h: '}</span>
           </div>
           <div
             style={{
@@ -94,40 +95,29 @@ const Card = ({ symbol, id = symbol }: prop): JSX.Element => {
               {query.error && 'error'}
             </span>
             <span>
-              {query.data?.data.transactions_24h}
-              {query.isLoading && 'loading'}
-              {query.error && 'error'}
-            </span>
-            <span>
               {query.data?.data.market_price_usd_change_24h_percentage}
               {'%'}
               {query.isLoading && 'loading'}
               {query.error && 'error'}
             </span>
-            <span>
-              {Math.floor(
-                (query.data?.data.volume_24h ||
-                  query.data?.data.volume_24h_approximate) / 1000000000,
-              ) + 'B'}
-              {query.isLoading && 'loading'}
-              {query.error && 'error'}
-            </span>
           </div>
         </div>
+        {/* dropdown / chart */}
         <div
           style={{
             border: '1px solid #EEEEEE',
             borderRadius: 10,
             textAlign: 'center',
             color: color,
-            transitionDuration: '0.2s',
             height: dropdown ? 50 : 0,
             opacity: dropdown ? 1 : 0,
+            transitionDuration: '0.2s',
           }}
         >
-          Dropdown
+          <Chart />
         </div>
       </div>
+      {/* logo */}
       <div
         style={{
           paddingTop: 6,

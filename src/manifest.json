@@ -14,5 +14,6 @@
   "name": "scamto",
   "icons": {
     "96": "scamto96.png"
-  }
+  },
+  "permissions": ["https://s3.tradingview.com/tv.js"]
 }

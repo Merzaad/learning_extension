@@ -4208,6 +4208,11 @@ react-query@^3.39.1:
     broadcast-channel "^3.4.1"
     match-sorter "^6.0.2"
 
+react-tradingview-embed@^3.0.6:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/react-tradingview-embed/-/react-tradingview-embed-3.0.6.tgz#880c0a9de55b3f3a8ba9738dee96c4cfc89eef3d"
+  integrity sha512-1qClGqBHOi7mvRFvhBxXSoyoPrNR8aPi/yfF/mYt8EWStA8LoWBl9ufemCyG+mc61iPmNGjJla0XB00FPENaPg==
+
 react@^17.0.2:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
